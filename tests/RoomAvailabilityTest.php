@@ -19,6 +19,11 @@ class RoomAvailabilityTest extends TestCase
         $user = new User(false);
 
         $this->assertTrue($room->canBook($user));
+
+        $room = new Room(true); //premium room, with no premium user
+        $user = new User(false);
+
+        $this->assertFalse($room->canBook($user));
     }
 
 }
