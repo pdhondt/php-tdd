@@ -34,9 +34,10 @@ class Room
      */
     private $bookings;
 
-    public function __construct()
+    public function __construct(bool $onlyForPremiumMembers)
     {
         $this->bookings = new ArrayCollection();
+        $this->onlyForPremiumMembers = $onlyForPremiumMembers;
     }
 
     public function getId(): ?int
@@ -96,5 +97,10 @@ class Room
         }
 
         return $this;
+    }
+
+    public function canBook(User $user)
+    {
+        return true;
     }
 }
