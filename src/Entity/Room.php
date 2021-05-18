@@ -99,8 +99,8 @@ class Room
         return $this;
     }
 
-    public function canBook(Room $room, User $user)
+    public function canBook(User $user)
     {
-        return ($room->getOnlyForPremiumMembers() && $user->getPremiumMember() || !$room->getOnlyForPremiumMembers());
+        return ($this->getOnlyForPremiumMembers() && $user->getPremiumMember() || !$this->getOnlyForPremiumMembers());
     }
 }
