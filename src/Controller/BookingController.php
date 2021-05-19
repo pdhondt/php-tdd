@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Bookings;
+use App\Entity\Room;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +15,21 @@ class BookingController extends AbstractController
     {
         return $this->render('booking/index.html.twig', [
             'controller_name' => 'BookingController',
+        ]);
+    }
+
+    #[Route('/booking/{id}', name: 'booking_room')]
+    public function bookRoom($id): Response
+    {
+        $room = $this->getDoctrine()->getRepository(Room::class)->find($id);
+
+        $booking = new Bookings();
+        $booking->setRoom($room);
+        $booking->setUser($user);
+
+
+        return $this->render('booking/index.html.twig', [
+            'room' => $room,
         ]);
     }
 }
